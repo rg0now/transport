@@ -320,6 +320,10 @@ func (v *Net) Dial(network string, address string) (net.Conn, error) {
 func (v *Net) ResolveIPAddr(_, address string) (*net.IPAddr, error) {
 	var err error
 
+	if address == "" {
+		address = "0.0.0.0"
+	}
+
 	// Check if host is a domain name
 	ip := net.ParseIP(address)
 	if ip == nil { //nolint:nestif
